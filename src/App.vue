@@ -13,7 +13,7 @@
     </nav>
 
     <div class="container mt-3">
-      <h2>Heeeeee~ddd</h2>
+      <h2>Hd check 404</h2>
       <router-view />
     </div>
   </div>
