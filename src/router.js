@@ -7,13 +7,13 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/13",
       alias: "/tutorials",
       name: "tutorials",
       component: () => import("./components/TutorialsList")
     },
     {
-      path: "/add",
+      path: "/12",
       name: "add",
       component: () => import("./components/AddTutorial")
     }
