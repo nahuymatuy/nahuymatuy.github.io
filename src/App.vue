@@ -1,33 +1,66 @@
 <template>
-  <div id="app">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">bezKoder</router-link>
-      <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/tutorials" class="nav-link">Tutorials</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/add" class="nav-link">Add</router-link>
-        </li>
-      </div>
-    </nav>
+  <v-app>
+    <v-card flat>
+      <v-toolbar
+        color="primary"
+        dark
+        extended
+        flat
+      >
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      </v-toolbar>
 
-    <div class="container mt-3">
-      <h2>Hd check 404</h2>
-      <router-view />
-    </div>
-  </div>
+      <v-card
+        class="mx-auto"
+        max-width="950"
+        style="margin-top: -64px;"
+      >
+        <v-toolbar flat>
+          <v-toolbar-title class="grey--text">
+            泰雅課程 實驗教育 內容編輯器
+          </v-toolbar-title>
+
+          <v-spacer></v-spacer>
+
+          <v-btn flat class="mx-2">
+          <router-link to="/v4">新增詞語 </router-link>
+          </v-btn> 
+          
+          <v-btn flat class="mx-2">
+            <router-link to="/v7">詞語列表</router-link>
+          </v-btn> 
+
+          <v-btn flat class="mx-3" >
+            <v-icon>mdi-magnify</v-icon> 
+            <a>文化素養</a>
+          </v-btn>
+
+          <v-btn flat class="mx-3"> 
+            <v-icon>mdi-apps</v-icon> 近期課表
+          </v-btn>
+
+          <v-btn icon class="mx-3">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </v-toolbar>
+
+        <v-divider>
+
+          
+        </v-divider>
+        <br>
+          <a class = "mx-9">
+            操作提示：
+             這邊有一些訊息 
+          </a>
+        <v-card-text style="height: 50px;"></v-card-text>
+      </v-card>
+    </v-card> 
+
+      <v-content class="mt-6"> 
+         <router-view/> 
+      </v-content>
+  </v-app>
+
+  
 </template>
-
-<script>
-export default {
-  name: "app"
-};
-</script>
-
-<style scoped>
-.container h2 {
-  text-align: center;
-  margin: 25px auto;
-}
-</style>
