@@ -13,5 +13,9 @@ module.exports = {
         hotOnly: false,
         proxy: null,
         disableHostCheck: true,
-      }
+      },
+
+      transpileDependencies: [
+        'vuetify'
+      ]
   }
