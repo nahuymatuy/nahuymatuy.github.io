@@ -6,10 +6,13 @@
       <v-tab to="/imgList">    圖面牆    </v-tab> 
       <v-tab to="/WordAdd">    新增詞語  </v-tab>
       <v-tab to="/WordList">   詞語列表  </v-tab>
-      <v-tab to="/couresOutlineAdd"> 課程目標  </v-tab>
+      <!-- <v-tab to="/couresOutlineAdd"> 課程目標  </v-tab> -->
+       <v-tab to="/cl"> 課程目標  </v-tab>
       
-      <v-tab to="/ "><v-icon>mdi-magnify</v-icon>   文化素養    </v-tab>
-      <v-tab to="/ "><v-icon>mdi-apps</v-icon>   近期課表       </v-tab> 
+       
+      <v-tab to="/ ">
+      <!-- <v-icon>mdi-apps</v-icon> -->
+         近期課表       </v-tab> 
     </v-tabs>
   </v-card>
 

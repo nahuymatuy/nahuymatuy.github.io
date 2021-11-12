@@ -70,6 +70,11 @@
                     clearable
                     v-model="currentTutorial.description"
                   ></v-text-field>
+                  <v-text-field 
+                    solo
+                    clearable
+                    v-model="currentTutorial.description2"
+                  ></v-text-field>
               </div> 
               <div class="col-span-1">
                 <label for="description">編號次序</label>
@@ -79,8 +84,9 @@
                     v-model="currentTutorial.temp_sort"
                   ></v-text-field>
               </div>
-              <div class="form-group my-2">
-              <label for="topic">season</label>
+
+            <div class="form-group my-2"> 
+              <label for="topic">泰雅時序</label>
               <v-container fluid> 
                       <v-select
                         v-model="currentTutorial.season"
@@ -93,6 +99,22 @@
                       ></v-select> 
                 </v-container> 
             </div> 
+
+              <div class="form-group my-2"> 
+              <label for="topic">文化面向</label>
+              <v-container fluid> 
+                      <v-select
+                        v-model="currentTutorial.field"
+                        :items="field_states"
+                        label="請選擇"
+                        multiple
+                        chips
+                        hint="這是一個測試選項"
+                        persistent-hint
+                      ></v-select> 
+                </v-container> 
+            </div> 
+            
             <div class="form-group my-2">
               <label for="topic">課程主題</label>
               <v-container fluid> 
@@ -154,9 +176,24 @@ export default {
     return {
       currentTutorial: null,
       message: "",
-      field_states:['gaga na trakis','gaga na pklahang qyunam','gaga na tmniun','mqwas tlubu ru‘ myugi','lmuhu msgamil'],
-      season_states:['s1', 's2', 's3', 's4',],
-      topic_states:['t00', 't01', 't02', 't03', 't04','t05', 't06', 't07', 't08', 't09', 't10', 't11', 't13', 't14', 't15', 't16',],
+      field_states:['小米文化','山林河流文化','編織工藝文化','樂舞文化','遷徙與部落社會'],
+      season_states:['s1', 's2', 's3', 's4',], 
+        topic_states:['祖靈祭',
+                      '播種祭',
+                      '收割祭',
+                      '入倉祭',
+                      '河流生態',
+                      '漁獵',
+                      '山林生態',
+                      '狩獵',
+                      '燒墾',
+                      '照顧小米',
+                      '樂舞',
+                      '竹籐籐編',
+                      '建築',
+                      '編織',
+                      '遷徒史',
+                      '部落社會',],
     };
   },
   watch: {
@@ -168,7 +205,7 @@ export default {
   methods: {
     updatePublished(status) {
       TutorialDataService.update(this.currentTutorial.key, {
-        published: status,
+        // published: status,
       })
         .then(() => {
           // this.currentTutorial.published = status;
@@ -184,9 +221,11 @@ export default {
         spell_tayal: this.currentTutorial.spell_tayal,
         spell_zh_tw: this.currentTutorial.spell_zh_tw,
         description: this.currentTutorial.description,
+        description2: this.currentTutorial.description2,
         topic: this.currentTutorial.topic,
         season: this.currentTutorial.season, 
         temp_sort: this.currentTutorial.temp_sort,
+        field: this.currentTutorial.field,
       };
 
       TutorialDataService.update(this.currentTutorial.key, data)

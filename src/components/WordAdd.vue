@@ -31,7 +31,7 @@
 
 
       <div class="col-span-1">
-              <label for="description">分類描述</label>
+              <label for="description">描述</label>
               <textarea
                 class="form-control"
                 id="description"
@@ -42,13 +42,13 @@
               />
             </div>  
             <div class="col-span-2">
-              <label for="description">細節內容</label>
+              <label for="description">細節描述</label>
               <textarea
                 class="form-control"
                 id="description"
                 rows="4" cols="50"
                 required
-                v-model="word.description2"
+                v-model="word.description"
                 name="description"
               />
             </div>  
@@ -81,6 +81,34 @@
                       ></v-select> 
                 </v-container> 
             </div> 
+            <div class="form-group my-2">
+            <label for="topic"> 5 大面向</label>
+              <v-radio-group
+                v-model="word.field"
+                mandatory 
+              >
+                <v-radio
+                  label="小米文化"
+                  value="小米文化"
+                ></v-radio>
+                <v-radio
+                  label="山林河流文化"
+                  value="山林河流文化"
+                ></v-radio>
+                <v-radio
+                  label="編織工藝文化"
+                  value="編織工藝文化"
+                ></v-radio>
+                <v-radio
+                  label="樂舞文化"
+                  value="樂舞文化"
+                ></v-radio> 
+               <v-radio
+                  label="遷徙組訓部落社會"
+                  value="遷徙組訓部落社會"
+                ></v-radio>
+              </v-radio-group>  
+            </div>  
       </div> 
     </div> 
     <div v-else>
@@ -100,66 +128,47 @@ import WordDataService from "../services/WordDataService";
 export default {
   name: "add-tutorial",
   data() {
-    return {
-        e6: [],
-        e7: [],
+    return { 
+          
         season_states:['s1', 's2', 's3', 's4',],
-        topic_states:['t00', 't01', 't02', 't03', 't04','t05', 't06', 't07', 't08', 't09', 't10', 't11', 't13', 't14', 't15', 't16',],
-        states: [
-          'Alabama', 'Alaska', 'American Samoa', 'Arizona',
-          'Arkansas', 'California', 'Colorado', 'Connecticut',
-          'Delaware', 'District of Columbia', 'Federated States of Micronesia',
-          'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
-          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-          'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
-          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-          'Missouri', 'Montana', 'Nebraska', 'Nevada',
-          'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-          'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
-          'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
-          'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-          'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
-          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
-        ],
+        field_states:['小米文化',
+                      '山林河流文化',
+                      '編織工藝文化',
+                      '樂舞文化',
+                      '遷徙組訓部落社會',],
+        topic_states:['祖靈祭',
+                      '播種祭',
+                      '收割祭',
+                      '入倉祭',
+                      '河流生態',
+                      '漁獵',
+                      '山林生態',
+                      '狩獵',
+                      '燒墾',
+                      '照顧小米',
+                      '樂舞',
+                      '竹籐籐編',
+                      '建築',
+                      '編織',
+                      '遷徒史',
+                      '部落社會',],
 
        word: {  
         spell_tayal: "",
         spell_zh_tw: "",  
-        season: "",
+        season:"",
         topic:"",
         description: "", 
+        field: "",
+        published: false,
       },
 
-
-      tutorial: {
-        title: "",
-        description: "",
-        date_s:"",
-        date_mor:[],
-        published: false
-      },
+ 
       submitted: false
     };
   },
   methods: {
-    // saveTutorial() {
-    //   var data = {
-    //     title: this.tutorial.title,
-    //     description: this.tutorial.description,
-    //     date_s: this.tutorial.date_s,
-    //     date_mor:this.tutorial.date_mor,
-    //     published: false
-    //   };
-
-    //   TutorialDataService.create(data)
-    //     .then(() => {
-    //       console.log("Created new item successfully!");
-    //       this.submitted = true;
-    //     })
-    //     .catch(e => {
-    //       console.log(e);
-    //     });
-    // },
+    
     
     saveWord() {
         var data = {
@@ -168,7 +177,8 @@ export default {
           topic: this.word.topic,
           season: this.word.season,
           description: this.word.description,
-          // description2: this.word.description2,
+          field: this.word.field,
+          published: true
           
         };
 

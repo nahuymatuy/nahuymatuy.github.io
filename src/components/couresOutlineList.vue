@@ -1,104 +1,84 @@
 <template>
-  <div class="list row">
+  <div class="list row">  
+
     
-    
-    <div class="col-md-8">
-      <h4>旅途 列表</h4>
+    <div class="col-12">  
+      
+        <!-- <div class="col-span-1 ">  
+          <v-card
+              :class="{ active: index == currentIndex }"
+                v-for="(tutorial, index) in tutorials"
+                :key="index"
+                @click="setActiveTutorial(tutorial, index)"
+              > 
+            <div  class="col-span-1 justify-items-end">  
+                <v-card-subtitle  align="right" >  
+                  <span class="bg-red-400 rounded-xl px-3 text-gray-50 text-xl "> 
+                        {{ tutorial.temp_sort}} </span>
+                  <br>
+                        {{ tutorial.cfield }} 
+                  <br> 
+                        {{ tutorial.cfieldgoal }}   
+                </v-card-subtitle>
+              </div>   
+          </v-card>
+        </div> -->
+        
+ 
+          <v-tabs
+            color="deep-purple accent-4"
+            right
+          >
+              <v-tab> 一年級</v-tab>
+              <v-tab> 二年級</v-tab>
+              <v-tab> 三年級</v-tab>
+              <v-tab> 四年級</v-tab>
+              <v-tab> 五年級</v-tab>
+              <v-tab> 六年級</v-tab>
 
-<v-container fluid>
-      <v-row dense>
-        <v-card
-         :class="{ active: index == currentIndex }"
-          v-for="(tutorial, index) in tutorials"
-          :key="index"
-          @click="setActiveTutorial(tutorial, index)"
-        >
-           
-              
-            {{ tutorial.temp_sort }}  
-            {{ tutorial.cfield }} ,
-            {{ tutorial.cfieldgoal }} , 
+            <v-tab-item
+              v-for="n in 6"
+              :key="n"
+            >
+              <v-container fluid>
+                <v-card
+                      :class="{ active: index == currentIndex }"
+                        v-for="(tutorial, index) in tutorials"
+                        :key="index"
+                        
+                      > <!-- @click="setActiveTutorial(tutorial, index)" -->
+                  <div class="grid grid-cols-5 gap-1 ">        
+                    <div class="col-span-1 ">  
+                      <v-card-subtitle  align="right" >  
+                        <span class="bg-red-400 rounded-xl px-3 text-gray-50 text-xl "> 
+                              {{ tutorial.temp_sort}} </span>
+                        <br>
+                              {{ tutorial.cfield }} 
+                        <br> 
+                              {{ tutorial.cfieldgoal }}   
+                      </v-card-subtitle>
 
-            <div class="grid grid-cols-6 gap-2">
-
-            <div>{{ tutorial.gd_1_ctent }} </div>
-            <div>{{ tutorial.gd_2_ctent }} </div>
-            <div>{{ tutorial.gd_3_ctent }} </div>
-            <div>{{ tutorial.gd_4_ctent }} </div>
-            <div>{{ tutorial.gd_5_ctent }} </div>
-            <div>{{ tutorial.gd_6_ctent }} </div>
-
-
-
-            </div>
-
-            
-
-            
-            <!-- {{ tutorial.gd_2_ctent }} ,
-            {{ tutorial.gd_3_ctent }} ,
-            {{ tutorial.gd_4_ctent }} ,
-            {{ tutorial.gd_5_ctent }} ,
-            {{ tutorial.gd_6_ctent }} , -->
-            {{ tutorial.memo }} ,
-
-            <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-
-              <v-btn icon>
-                <v-icon>mdi-heart</v-icon>
-              </v-btn>
-
-              <v-btn icon>
-                <v-icon>mdi-bookmark</v-icon>
-              </v-btn>
-
-              <v-btn icon>
-                <v-icon>mdi-share-variant</v-icon>
-              </v-btn>
-            </v-card-actions> -->
-          </v-card> 
-          <hr>
-      </v-row>
-    </v-container>
-
-
-<!-- 
-      <ul class="list-group"> 
-        <li
-          class="list-group-item"
-          :class="{ active: index == currentIndex }"
-          v-for="(tutorial, index) in tutorials"
-          :key="index"
-          @click="setActiveTutorial(tutorial, index)"
-        >
-            {{ tutorial.temp_sort }}  
-            {{ tutorial.cfield }} ,
-            {{ tutorial.cfieldgoal }} , 
-            
-            {{ tutorial.gd_1_ctent }} ,
-            {{ tutorial.gd_2_ctent }} ,
-            {{ tutorial.gd_3_ctent }} ,
-            {{ tutorial.gd_4_ctent }} ,
-            {{ tutorial.gd_5_ctent }} ,
-            {{ tutorial.gd_6_ctent }} ,
-            {{ tutorial.memo }} ,
-             
-          
-        </li>
+                    </div>
+                    <div  class="col-span-4 justify-items-end">  
+                      <div v-if='n==1'> <v-card-text>{{ tutorial.gd_1_ctent }}</v-card-text></div>
+                      <div v-if='n==2'> <v-card-text>{{ tutorial.gd_2_ctent }}</v-card-text></div>
+                      <div v-if='n==3'> <v-card-text>{{ tutorial.gd_3_ctent }}</v-card-text></div>
+                      <div v-if='n==4'> <v-card-text>{{ tutorial.gd_4_ctent }}</v-card-text></div>
+                      <div v-if='n==5'> <v-card-text>{{ tutorial.gd_5_ctent }}</v-card-text></div>
+                      <div v-if='n==6'> <v-card-text>{{ tutorial.gd_6_ctent }}</v-card-text></div>
+                    </div> 
+                    
+                 </div>  
+                </v-card> 
+              </v-container>
+            </v-tab-item>
+          </v-tabs>
 
 
-      </ul> -->
-
-
-
-
-
-      <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
-        移除所有資料
-      </button> -->
+ 
+ 
     </div>
-    <div class="col-md-2">
+    <!-- <div class="col-2">
       <div v-if="currentTutorial">
         <tutorial-details
           :tutorial="currentTutorial"
@@ -109,7 +89,7 @@
         <br />
         <p>Please 確認 on a Tutorial...</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -124,6 +104,15 @@ export default {
 
   data() {
     return {
+
+
+      show_1: false,
+      show_2: false,
+      show_3: false,
+      show_4: false,
+      show_5: false,
+      show_6: false,
+      show_7: false,
       tutorials: [],
       currentTutorial: null,
       currentIndex: -1

@@ -1,8 +1,213 @@
 <template>
   <div class="list row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <!-- <h4> 列表 </h4> -->
-      <a class="text-3xl py-2 "> 詞彙 列表 </a> 
+      <a class="text-3xl py-2 "> 詞彙 列表 </a>  
+
+            <v-sheet
+              elevation="10"
+              rounded
+            >
+              <v-sheet
+                class="pa-3 primary text-right"
+                dark
+                rounded
+              >
+                All
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="primary--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)"
+                  >
+                    
+                    {{ tutorial.spell_tayal }}  ,
+                    {{ tutorial.spell_zh_tw }} 
+                  </v-chip>
+                </v-chip-group>
+              </div>
+            </v-sheet> 
+
+            <v-sheet
+              elevation="10"
+              rounded
+            >
+              <v-sheet
+                class="pa-3 deep-orange darken-2 text-right"
+                dark
+                rounded
+              >
+                5大文化面向
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="danger--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)"
+                      v-if='tutorial.description === "5大文化面向"'
+                  > 
+                     
+                    {{ tutorial.spell_tayal }}  ,
+                    {{ tutorial.spell_zh_tw }}  
+                  </v-chip>
+                </v-chip-group>
+
+                <!-- <div
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)" 
+                      v-if='tutorial.description === "5大文化面向"'
+                  >  
+                   '{{ tutorial.spell_zh_tw }}',
+                </div> -->
+              </div>
+            </v-sheet> 
+
+            <v-sheet
+              elevation="10"
+              rounded
+            >
+              <v-sheet
+                class="pa-3 teal darken-1 text-right"
+                dark
+                rounded
+              >
+                16課程主題
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="primary--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)" 
+                      v-if='tutorial.description === "16課程主題"'
+                  >  
+                    {{ tutorial.spell_tayal }}  ,
+                    {{ tutorial.spell_zh_tw }}  
+                  </v-chip>
+                </v-chip-group> 
+                
+              </div>
+            </v-sheet> 
+
+
+            <v-sheet
+              elevation="10"
+              rounded
+            >
+              <v-sheet
+                class="pa-3 light-blue darken-4  text-right"
+                dark
+                rounded
+              >
+                山林狩獵文化
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="primary--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)" 
+                      v-if='tutorial.topic == "山林生態" | tutorial.topic == "狩獵" '
+                  >  
+                    {{ tutorial.spell_tayal }}  ,
+                    {{ tutorial.spell_zh_tw }}  
+                  </v-chip>
+                </v-chip-group> 
+                
+              </div>
+            </v-sheet> 
+
+            <v-sheet
+                class="pa-3 light-blue darken-4  text-right"
+                dark
+                rounded
+              >
+                河流漁獵文化
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="primary--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)" 
+                      v-if='tutorial.topic == "河流生態" | tutorial.topic == "漁獵" '
+                  >  
+                    {{ tutorial.spell_tayal }}  ,
+                    {{ tutorial.spell_zh_tw }}  
+                  </v-chip>
+                </v-chip-group> 
+                
+              </div>
+            </v-sheet> 
+
+
+            <v-sheet
+              elevation="10"
+              rounded
+            >
+              <v-sheet
+                class="pa-3 lime darken-4 text-right"
+                dark
+                rounded
+              >
+                小米文化
+              </v-sheet>
+
+              <div class="pa-4">
+                <v-chip-group
+                  active-class="primary--text"
+                  column 
+                >
+                  <v-chip
+                    :class="{ active: index == currentIndex }"
+                      v-for="(tutorial, index) in tutorials"
+                      :key="index"
+                      @click="setActiveTutorial(tutorial, index)" 
+                      v-if='tutorial.field == "小米文化"'
+                  >  
+                    {{ tutorial.spell_tayal }}  , 
+                    {{ tutorial.spell_zh_tw }}  
+                  </v-chip>
+                </v-chip-group> 
+                
+              </div>
+            </v-sheet> 
+
+
+<!-- <br>
+<br>
+<br>
+            <br>
 
       <ul class="list-group">
         <li
@@ -12,13 +217,16 @@
           :key="index"
           @click="setActiveTutorial(tutorial, index)"
         >
+
+
           {{ tutorial.temp_sort }} 
           {{ tutorial.spell_zh_tw }} , 
           {{ tutorial.spell_tayal }} ,
           {{ tutorial.description }} ,
           {{ tutorial.description2 }} ,  
           
-          {{ tutorial.field }},  
+         『 {{ tutorial.field }} 』 
+         
           {{ tutorial.semester }}, 
           {{ tutorial.season }},
           {{ tutorial.topic }} 
@@ -26,16 +234,17 @@
 
           
         </li>
-      </ul>
+      </ul> -->
 
       
  
 
-      <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
+      <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
         Remove All
-      </button>
+      </button> -->
     </div>
-    <div class="col-md-8">
+
+    <!-- <div class="col-md-6">
       <div v-if="currentTutorial">
         <tutorial-details
           :tutorial="currentTutorial"
@@ -46,7 +255,8 @@
         <br />
         <p>Please click on a Tutorial...</p>
       </div>
-    </div>
+    </div> -->
+
   </div>
 
 
@@ -62,13 +272,14 @@ export default {
   data() {
     return {
       tutorials: [],
+      t: [],
       currentTutorial: null,
       currentIndex: -1
     };
   },
   methods: {
       onDataChange(items) {
-        let _tutorials = [];
+        let _tutorials = []; 
 
         items.forEach((item) => {
           let key = item.key;
@@ -83,8 +294,7 @@ export default {
             season       : data.season,
             topic        : data.topic,
             temp_sort    : data.temp_sort,
-            field        : data.field,
-
+            field        : data.field,  
 
           // {{ tutorial.spell_tayal }}
           // {{ tutorial.spell_zh_tw }}  
@@ -97,7 +307,7 @@ export default {
             // published: data.published,
           });
         });
-
+        this.t = _tutorials.field 
         this.tutorials = _tutorials;
       },
 
