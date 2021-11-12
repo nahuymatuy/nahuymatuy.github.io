@@ -1,6 +1,6 @@
 <template>
   <div class="list row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       <!-- <h4> 列表 </h4> -->
       <a class="text-3xl py-2 "> 詞彙 列表 </a> 
 
@@ -12,13 +12,15 @@
           :key="index"
           @click="setActiveTutorial(tutorial, index)"
         >
-          {{ tutorial.description }} , 
+          {{ tutorial.temp_sort }} 
+          {{ tutorial.spell_zh_tw }} , 
           {{ tutorial.spell_tayal }} ,
-          {{ tutorial.spell_zh_tw }} ,
-          <!-- {{ tutorial.description }} -->
-
-          {{ tutorial.semester }} , 
-          {{ tutorial.season }} ,
+          {{ tutorial.description }} ,
+          {{ tutorial.description2 }} ,  
+          
+          {{ tutorial.field }},  
+          {{ tutorial.semester }}, 
+          {{ tutorial.season }},
           {{ tutorial.topic }} 
 
 
@@ -27,28 +29,13 @@
       </ul>
 
       
-
-<!-- <template v-slot:activator="{ on, attrs }">
-              <v-combobox
-                v-model="tutorial.date_mor"
-                multiple
-                chips
-                small-chips
-                label="Multiple picker in menu"
-                prepend-icon="mdi-calendar"
-                readonly
-                v-bind="attrs"
-                v-on="on"
-              ></v-combobox>
-            </template> -->
-
-
+ 
 
       <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
         Remove All
       </button>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-8">
       <div v-if="currentTutorial">
         <tutorial-details
           :tutorial="currentTutorial"
@@ -61,6 +48,8 @@
       </div>
     </div>
   </div>
+
+
 </template>
 
 <script>
@@ -88,9 +77,14 @@ export default {
             key: key, 
             spell_tayal  : data.spell_tayal,
             spell_zh_tw  : data.spell_zh_tw, 
-            description : data.description,
-            season      : data.season,
-            topic       : data.topic,
+            description  : data.description,
+            description2 : data.description2,
+
+            season       : data.season,
+            topic        : data.topic,
+            temp_sort    : data.temp_sort,
+            field        : data.field,
+
 
           // {{ tutorial.spell_tayal }}
           // {{ tutorial.spell_zh_tw }}  
@@ -139,8 +133,8 @@ export default {
 <style>
 .list {
   text-align: left;
-  max-width: 750px;
-  margin: auto;
+  /* max-width: 750px; */
+  margin: 10px;
 }
 </style>
  

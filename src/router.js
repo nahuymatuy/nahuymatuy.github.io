@@ -31,12 +31,29 @@ export default new Router({
       path: "/WordList",
       name: "WordList",
       component: () => import("./components/WordList")
-    },
-     
+    }, 
     {
       path: "/cardDisplay",
       name: "cardDisplay",
       component: () => import("./components/cardDisplay")
     },
+    {
+      path: "/imgList",
+      name: "imgList",
+      component: () => import("./components/imgList")
+    }, 
+    {
+      path: "/couresOutlineAdd",
+      name: "couresOutlineAdd",
+      component: () => import("./components/couresOutlineAdd")
+    },
+    {
+      path: "/cL",
+      name: "couresOutlineList",
+      component: () => import("./components/couresOutlineList")
+    },
+
+
+    
   ]
 });
