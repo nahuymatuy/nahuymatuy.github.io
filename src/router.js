@@ -4,7 +4,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   routes: [
     {
       path: "/",
@@ -15,7 +15,7 @@ export default new Router({
     {
       path: "/add",
       name: "add",
-      component: () => import("./components/AddTutorial")
+      component: () => import("./components/TutorialAdd")
     },
     {
       path: "/v3",
@@ -23,24 +23,20 @@ export default new Router({
       component: () => import("./components/v3")
     },
     {
-      path: "/v4",
-      name: "v4",
-      component: () => import("./components/AddD2")
+      path: "/WordAdd",
+      name: "WordAdd",
+      component: () => import("./components/WordAdd")
     },
     {
-      path: "/v5",
-      name: "v5",
-      component: () => import("./components/AddDictionary")
+      path: "/WordList",
+      name: "WordList",
+      component: () => import("./components/WordList")
     },
+     
     {
       path: "/cardDisplay",
       name: "cardDisplay",
       component: () => import("./components/cardDisplay")
     },
-    {
-      path: "/v7",
-      name: "v7",
-      component: () => import("./components/WordList")
-    } ,
   ]
 });

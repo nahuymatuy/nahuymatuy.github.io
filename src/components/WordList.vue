@@ -1,7 +1,9 @@
 <template>
   <div class="list row">
-    <div class="col-md-6">
-      <h4>W List</h4>
+    <div class="col-md-8">
+      <!-- <h4> 列表 </h4> -->
+      <a class="text-3xl py-2 "> 詞彙 列表 </a> 
+
       <ul class="list-group">
         <li
           class="list-group-item"
@@ -10,23 +12,43 @@
           :key="index"
           @click="setActiveTutorial(tutorial, index)"
         >
-          {{ tutorial.description }} ,
-
-          {{ tutorial.word_tayal }} ,
-          {{ tutorial.word_zh_tw }} ,
+          {{ tutorial.description }} , 
+          {{ tutorial.spell_tayal }} ,
+          {{ tutorial.spell_zh_tw }} ,
           <!-- {{ tutorial.description }} -->
+
+          {{ tutorial.semester }} , 
           {{ tutorial.season }} ,
           {{ tutorial.topic }} 
+
+
+          
         </li>
       </ul>
 
       
 
+<!-- <template v-slot:activator="{ on, attrs }">
+              <v-combobox
+                v-model="tutorial.date_mor"
+                multiple
+                chips
+                small-chips
+                label="Multiple picker in menu"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-combobox>
+            </template> -->
+
+
+
       <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
         Remove All
       </button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div v-if="currentTutorial">
         <tutorial-details
           :tutorial="currentTutorial"
@@ -43,7 +65,7 @@
 
 <script>
 import WordDataService from "../services/WordDataService";
-import TutorialDetails from "./Tutorial";
+import TutorialDetails from "./WordMdf"; // 連接至 Mdf 的部分
 
 export default {
   name: "tutorials-list",
@@ -63,10 +85,10 @@ export default {
           let key = item.key;
           let data = item.val();
           _tutorials.push({
-            key: key,
-            description : data.description, 
-            word_tayal  : data.word_tayal,
-            word_zh_tw  : data.word_zh_tw, 
+            key: key, 
+            spell_tayal  : data.spell_tayal,
+            spell_zh_tw  : data.spell_zh_tw, 
+            description : data.description,
             season      : data.season,
             topic       : data.topic,
 

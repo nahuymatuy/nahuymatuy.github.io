@@ -1,8 +1,12 @@
 <template>
   <div class="list row">
-    <div class="col-md-6">
-      <h4>Tutorials List</h4>
+    
+    
+    <div class="col-md-2">
+      <h4>旅途 列表</h4>
       <ul class="list-group">
+
+
         <li
           class="list-group-item"
           :class="{ active: index == currentIndex }"
@@ -11,14 +15,31 @@
           @click="setActiveTutorial(tutorial, index)"
         >
           {{ tutorial.title }}
+ 
+        <!-- <v-date-picker
+              v-model="tutorial.date_mor"
+              multiple
+              no-title
+              scrollable
+            >
+               
+        </v-date-picker> -->
+             
+          
         </li>
+
+
       </ul>
 
+
+
+
+
       <button class="m-3 btn btn-sm btn-danger" @click="removeAllTutorials">
-        Remove All
+        移除所有資料
       </button>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div v-if="currentTutorial">
         <tutorial-details
           :tutorial="currentTutorial"
@@ -27,7 +48,7 @@
       </div>
       <div v-else>
         <br />
-        <p>Please click on a Tutorial...</p>
+        <p>Please 確認 on a Tutorial...</p>
       </div>
     </div>
   </div>
@@ -35,11 +56,13 @@
 
 <script>
 import TutorialDataService from "../services/TutorialDataService";
-import TutorialDetails from "./Tutorial";
+import TutorialDetails from "./TutorialMdf";
 
 export default {
   name: "tutorials-list",
   components: { TutorialDetails },
+
+
   data() {
     return {
       tutorials: [],
@@ -47,6 +70,9 @@ export default {
       currentIndex: -1
     };
   },
+
+
+
   methods: {
     onDataChange(items) {
       let _tutorials = [];
@@ -59,6 +85,8 @@ export default {
           title: data.title,
           description: data.description,
           published: data.published,
+          date_s:data.date_s,
+          date_mor:data.date_mor,
         });
       });
 

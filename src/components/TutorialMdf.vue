@@ -1,9 +1,9 @@
 <template>
   <div v-if="currentTutorial" class="edit-form">
-    <h4>Tutorial</h4>
+    <h4> 詞彙說明 </h4>
     <form>
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">泰雅文</label>
         <input
           type="text"
           class="form-control"
@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
+        <label for="description">細節描述</label>
         <input
           type="text"
           class="form-control"
@@ -23,9 +23,62 @@
       </div>
 
       <div class="form-group">
-        <label><strong>Status:</strong></label>
+        <label for="description">日期</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          v-model="currentTutorial.date_s"
+        />
+      </div>
+
+
+      <div class="form-group">
+        <label for="description">日期</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          v-model="currentTutorial.date_s"
+        />
+      </div>
+      <!-- <div class="form-group">
+        <label for="description">日期</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          v-model="currentTutorial.date_mor"
+        />
+      </div> -->
+
+
+
+
+      <div class="form-group">
+        <label><strong>狀態:</strong></label>
         {{ currentTutorial.published ? "Published" : "Pending" }}
       </div>
+
+<!-- <v-date-picker
+              v-model="tutorial.date_mor"
+              multiple
+            ></v-date-picker>
+
+      <v-combobox
+                v-model="tutorial.date_mor"
+                multiple
+                chips
+                small-chips
+                label="Multiple picker in menu"
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              ></v-combobox> -->
+
+
+
     </form>
 
     <button
@@ -40,22 +93,24 @@
       class="badge badge-primary mr-2"
       @click="updatePublished(true)"
     >
-      Publish
+      儲存
     </button>
 
     <button class="badge badge-danger mr-2" @click="deleteTutorial">
-      Delete
+      刪除
     </button>
 
-    <button type="submit" class="badge badge-success" @click="updateTutorial">
-      Update
+    <button type="submit" 
+            class="border-2 border-solid  px-2 " 
+            @click="updateTutorial">
+      更新
     </button>
     <p>{{ message }}</p>
   </div>
 
   <div v-else>
     <br />
-    <p>Please click on a Tutorial...</p>
+    <p>Please 確認 on a Tutorial...</p>
   </div>
 </template>
 
@@ -99,7 +154,7 @@ export default {
 
       TutorialDataService.update(this.currentTutorial.key, data)
         .then(() => {
-          this.message = "The tutorial was updated successfully!";
+          this.message = "更新成功!";
         })
         .catch((e) => {
           console.log(e);

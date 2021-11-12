@@ -17,17 +17,26 @@
       >
         <v-toolbar flat>
           <v-toolbar-title class="grey--text">
-            泰雅課程 實驗教育 內容編輯器
+            尖石地區 泰雅課程 實驗教育
           </v-toolbar-title>
 
           <v-spacer></v-spacer>
 
+
           <v-btn flat class="mx-2">
-          <router-link to="/v4">新增詞語 </router-link>
+          <router-link to="/Add">新增旅途 </router-link>
           </v-btn> 
           
           <v-btn flat class="mx-2">
-            <router-link to="/v7">詞語列表</router-link>
+            <router-link to="/tutorials">  旅途列表</router-link>
+          </v-btn> 
+
+          <v-btn flat class="mx-2">
+          <router-link to="/WordAdd">新增詞語 </router-link>
+          </v-btn> 
+          
+          <v-btn flat class="mx-2">
+            <router-link to="/WordList">  詞語列表</router-link>
           </v-btn> 
 
           <v-btn flat class="mx-3" >
@@ -36,7 +45,8 @@
           </v-btn>
 
           <v-btn flat class="mx-3"> 
-            <v-icon>mdi-apps</v-icon> 近期課表
+            <v-icon>mdi-apps</v-icon> 
+            <a>近期課表</a>
           </v-btn>
 
           <v-btn icon class="mx-3">
