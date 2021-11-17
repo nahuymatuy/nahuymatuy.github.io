@@ -42,13 +42,13 @@ export default new Router({
       name: "imgList",
       component: () => import("./components/imgList")
     },
+    // {
+    //   path: "/blogList",
+    //   name: "blogList",
+    //   component: () => import("./components/blogListapp")
+    // },
     {
       path: "/blogList",
-      name: "blogList",
-      component: () => import("./components/blogListapp")
-    },
-    {
-      path: "/blogList1",
       name: "blogList",
       component: () => import("./components/blogList")
     },

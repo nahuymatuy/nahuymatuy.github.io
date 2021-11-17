@@ -23,23 +23,24 @@
         <template v-slot:activator="{ on, attrs }">  
             <div class="col-12 grid grid-cols-4 gap-1">
 
+ <select v-model="src" style="width: 30em">
+                <!-- <option v-for="item in pdfList" :value="item" v-text="item"></option> -->
+              </select>
 
 
-              
               <div class="row-span-1 col-span-3 text-lg font-bold ">{{ tutorial.Title }}</div>
               <v-btn class="row-span-2 red darken-1 text-white h-100"   v-bind="attrs" v-on="on" >  閱讀教案 </v-btn>  
               <div class=" row-span-1 text-xs text-gary-500">  {{ tutorial.Type }}dd </div> 
               <div class=" row-span-1 text-xs text-gary-500"> {{ tutorial.Author }}</div>
               <div class=" row-span-2 text-xs text-gary-500">  {{ tutorial.HashTags }} </div> 
-              <div class="row-span-1 col-span-4 text-lg font-bold "><iframe :src="tutorial.pdfUrl "></iframe></div>
 
-              
+
              
 
               
-              <!-- {{index }} |
+              {{index }} |
                {{temp_pdf[index] }} || {{ temp_pdf }}
-              ||  -->
+              || 
               {{ tutorial.pdfUrl }} 
 
 

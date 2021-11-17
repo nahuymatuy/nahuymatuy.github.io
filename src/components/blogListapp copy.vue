@@ -1,113 +1,28 @@
 <template>
-  <div class="ml-5 mr-3">  
-
+   <vue-pdf-app   :pdf="url" ></vue-pdf-app>
     
-    <div class="col-12">    
-        <div 
-          :class="{ active: index == currentIndex }"
-          v-for="(tutorial, index) in tutorials"
-          :key="index"
-          @click="setActiveTutorial(tutorial, index)"
-        >   
-         <!-- >>> {{ tutorial }} <<<
-            >>> {{ index }} <<<
-            >>>    {{ temp_img[index] }}<<< -->
-      <v-dialog
-        v-model="dialog" 
-        class="col-9 "
-        fullscreen
-        hide-overlay
-        transition="dialog-bottom-transition"
-      >
-     
-        <template v-slot:activator="{ on, attrs }">  
-            <div class="col-12 grid grid-cols-4 gap-1">
-
-
-
-              
-              <div class="row-span-1 col-span-3 text-lg font-bold ">{{ tutorial.Title }}</div>
-              <v-btn class="row-span-2 red darken-1 text-white h-100"   v-bind="attrs" v-on="on" >  閱讀教案 </v-btn>  
-              <div class=" row-span-1 text-xs text-gary-500">  {{ tutorial.Type }}dd </div> 
-              <div class=" row-span-1 text-xs text-gary-500"> {{ tutorial.Author }}</div>
-              <div class=" row-span-2 text-xs text-gary-500">  {{ tutorial.HashTags }} </div> 
-              <div class="row-span-1 col-span-4 text-lg font-bold "><iframe :src="tutorial.pdfUrl "></iframe></div>
-
-              
-             
-
-              
-              <!-- {{index }} |
-               {{temp_pdf[index] }} || {{ temp_pdf }}
-              ||  -->
-              {{ tutorial.pdfUrl }} 
-
-
-              <br>
-              <!-- || {{ tutorial[1].pdfUrl }} -->
-            </div> 
-        </template>
-        <!-- :src="tutorial[key].pdfUrl" -->
-        <v-card class="col-12 flex flex-col " >   
-          <!-- {{temp_pdf[index] }} || {{ temp_pdf }} -->
-
-          <!-- <iframe :src="temp_pdf[index]" width="100%" height="768px"></iframe> -->
-
-
-            <pdf ref="pdf"  
-                :src="url"
-                :page="pageNum"
-                :rotate="pageRotate"  
-                @progress="loadedRatio = $event"
-                @page-loaded="pageLoaded($event)" 
-                @num-pages="pageTotalNum=$event" 
-                @error="pdfError($event)" 
-                @link-clicked="page = $event">
-            </pdf>
-              <!-- </v-card-text>  -->
-            <div class="w-full grid grid-cols-6 gap-2"> 
-              <v-btn small class="col-span-1 red darken-5 text-white " @click="dialog = false"  >  關閉 00{{index}} </v-btn> 
-              <v-btn small class="col-span-1 red darken-1 text-white " @click="dialog = false" > 77 讚 </v-btn> 
-              <v-btn small class="col-span-2 grey lighten-2 " >        {{pageNum}}/{{pageTotalNum}} </v-btn>
-              <v-btn small class="col-span-1 red darken-1 text-white " @click="prePage"  > 上一頁 </v-btn>
-              <v-btn small class="col-span-1 red darken-1 text-white " @click="nextPage" > 下一頁 </v-btn> 
-            </div> 
-        </v-card>
-      </v-dialog> 
-      </div>
-    </div>
-    <div class="col-4">
-      <div v-if="currentTutorial">
-        <tutorial-details
-          :tutorial="currentTutorial"
-          @refreshList="refreshList"
-        />
-      </div>
-      <div v-else>
-        <br />
-        <p>Please 確認 on a Tutorial...</p>
-      </div>
-    </div>
-  </div>
 </template>
 
+ 
 <script>
 
 import pdf from 'vue-pdf'
 import MdfDataService from "../services/blogService";
 import TutorialDetails from "./TutorialMdf";
+import VuePdfApp from "vue-pdf-app";
+// import this to use default icons for buttons
+import "vue-pdf-app/dist/icons/main.css";
 
 export default {
   name: "tutorials-list",
-  components: { TutorialDetails , pdf },
+  components: { TutorialDetails , pdf ,VuePdfApp },
 
 
   data() {
     return { 
 
 
-      dfList: [
-				'',
+      dfList: [ 
 				'https://cdn.mozilla.net/pdfjs/tracemonkey.pdf',
 				'https://cdn.rawgit.com/mozilla/pdf.js/c6e8ca86/test/pdfs/freeculture.pdf',
 				'https://cdn.rawgit.com/mozilla/pdf.js/c6e8ca86/test/pdfs/annotation-link-text-popup.pdf',
