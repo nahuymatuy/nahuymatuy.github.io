@@ -2,16 +2,25 @@
   <div class="ml-5 mr-3">  
 
     
-    <div class="col-12">    
+    <div class="col-12">  
+         <!-- <ul class="list-group"> -->
+
+
         <div 
           :class="{ active: index == currentIndex }"
           v-for="(tutorial, index) in tutorials"
           :key="index"
           @click="setActiveTutorial(tutorial, index)"
-        >   
-         <!-- >>> {{ tutorial }} <<<
-            >>> {{ index }} <<<
-            >>>    {{ temp_img[index] }}<<< -->
+        >  
+  <!-- <img v-bind:src="tutorial.imgUrl" />  -->
+  
+    <!-- {{ tutorial.Content }} ,<br>
+    {{ tutorial.Author }} ,<br>
+    {{ tutorial.HashTags }} ,<br>
+    {{ tutorial.imgUrl }} ,<br>
+    {{ tutorial.pdfUrl }} ,<br>
+    {{ tutorial.Type }}  ,<br> -->
+  <!-- <v-row > -->
       <v-dialog
         v-model="dialog" 
         class="col-9 "
@@ -19,30 +28,21 @@
         hide-overlay
         transition="dialog-bottom-transition"
       >
-     
         <template v-slot:activator="{ on, attrs }">  
             <div class="col-12 grid grid-cols-4 gap-1">
               <div class="row-span-1 col-span-3 text-lg font-bold ">{{ tutorial.Title }}</div>
               <v-btn class="row-span-2 red darken-1 text-white h-100"   v-bind="attrs" v-on="on" >  閱讀教案 </v-btn>  
               <div class=" row-span-1 text-xs text-gary-500">  {{ tutorial.Type }}dd </div> 
               <div class=" row-span-1 text-xs text-gary-500"> {{ tutorial.Author }}</div>
-              <div class=" row-span-2 text-xs text-gary-500">  {{ tutorial.HashTags }} </div> 
+              <div class=" row-span-2 text-xs text-gary-500">  {{ tutorial.HashTags }} </div>
               
-              {{index }} |
-               {{temp_pdf[index] }} || {{ temp_pdf }}
-              || 
-              {{ tutorial.pdfUrl }} 
-
-
-              <br>
-              <!-- || {{ tutorial[1].pdfUrl }} -->
-            </div> 
+            </div>
+ 
         </template>
-        <!-- :src="tutorial[key].pdfUrl" -->
-        <v-card class="col-12 flex flex-col " >   
-          <!-- {{temp_pdf[index] }} || {{ temp_pdf }} -->
-            <pdf ref="pdf"  
-                :src="url"
+        <v-card class="col-12 flex flex-col " >  
+            <!-- <pdf ref="pdf"  
+                class="col-12 "
+                :src="tutorial.pdfUrl" 
                 :page="pageNum"
                 :rotate="pageRotate"  
                 @progress="loadedRatio = $event"
@@ -50,17 +50,50 @@
                 @num-pages="pageTotalNum=$event" 
                 @error="pdfError($event)" 
                 @link-clicked="page = $event">
-            </pdf>
+            </pdf>  -->
+
+            <pdf ref="pdf" 
+            :src="url" 
+            :page="pageNum"
+            :rotate="pageRotate"  
+            @progress="loadedRatio = $event"
+            @page-loaded="pageLoaded($event)" 
+            @num-pages="pageTotalNum=$event" 
+            @error="pdfError($event)" 
+            @link-clicked="page = $event">
+        </pdf>
               <!-- </v-card-text>  -->
             <div class="w-full grid grid-cols-6 gap-2"> 
-              <v-btn small class="col-span-1 red darken-5 text-white " @click="dialog = false"  >  關閉 00{{index}} </v-btn> 
-              <v-btn small class="col-span-1 red darken-1 text-white " @click="dialog = false" > 77 讚 </v-btn> 
+              <v-btn small class="col-span-1 red darken-5 text-white " @click="dialog = false"  >  關閉 </v-btn>
+              
+              <v-btn small class="col-span-1 red darken-1 text-white " @click="dialog = false" > 77 讚 </v-btn>
+
               <v-btn small class="col-span-2 grey lighten-2 " >  {{pageNum}}/{{pageTotalNum}} </v-btn>
               <v-btn small class="col-span-1 red darken-1 text-white " @click="prePage"  > 上一頁 </v-btn>
-              <v-btn small class="col-span-1 red darken-1 text-white " @click="nextPage" > 下一頁 </v-btn> 
+              <v-btn small class="col-span-1 red darken-1 text-white " @click="nextPage" > 下一頁 </v-btn>
+              <!-- <button class="text-xs col-span-2 text-white bg-red-400 border-b-4 border-gray-600" > 返回 </button> -->
+              <!-- <button  class="text-xs span-col-1" @click="dialog = false" > 返回 </button>
+              <button  class="text-xs span-col-1" @click="prePage"  > 上一頁 </button> 
+              <button  class="text-xs span-col-1" @click="nextPage" > 下一頁 </button> 
+              <button  class="        span-col-2 border-2 my-4 mx-2 font-bold text-base text-gray-500 ">{{pageNum}}/{{pageTotalNum}} </v-btn>  
+              <button  class="text-xs span-col-1" @click="dialog = false" > 77 讚 </button> -->
             </div> 
         </v-card>
-      </v-dialog> 
+      </v-dialog>
+    <!-- </v-row>   -->
+  <!-- <v-card-text>
+    {{ tutorial.Author }} ,<br>
+    {{ tutorial.HashTags }} ,<br>
+    {{ tutorial.imgUrl }} ,<br>
+    {{ tutorial.pdfUrl }} ,<br>
+    {{ tutorial.Type }}  ,<br> 
+  </v-card-text>  -->
+
+ 
+        <!-- </li>
+
+
+      </ul> -->
       </div>
     </div>
     <div class="col-4">
@@ -100,7 +133,6 @@ export default {
       widgets: false,
       
       url: "http://storage.xuetangx.com/public_assets/xuetangx/PDF/PlayerAPI_v1.0.6.pdf",
-      url2:"https://www.philadelphiaaces.org/sites/default/files/fake_pdf.pdf",
       // - - - - - - - - - 
       pageNum: 1,
       pageTotalNum: 1,
@@ -108,10 +140,8 @@ export default {
       // 加載進度
       loadedRatio: 0,
       curPageNum: 0,
-      // - - - - - - - - -  
+      // - - - - - - - - - 
 
-      temp_img: [],
-      temp_pdf: [],
 
       tutorials: [],
       currentTutorial: null,
@@ -120,9 +150,6 @@ export default {
   }, 
 
   methods: {
-
-     
-
     // 上一頁函數，
     prePage() {
         var page = this.pageNum
@@ -165,32 +192,13 @@ export default {
             Title:    data.Title, 
             Content:  data.Content, 
             imgUrl:   data.imgUrl, 
-            pdfUrl:   data.pdfUrl, 
+            pdfUrl:   data.pdfUrl,
+
             Type: data.Type,  
         });
       });
 
       this.tutorials = _tutorials;
-
-      //  ::  藉由使用  ::
-    var temp_ary = _tutorials.map(function(item, index, array){ 
-        if (item.pdfUrl !== '') {
-              return item.pdfUrl;
-            }  
-      }) ; 
-    this.temp_pdf = temp_ary ;
-
-      //  ::  藉由使用  ::
-    var temp_ary2 = _tutorials.map(function(item, index, array){ 
-        if (item.imgUrl !== '') {
-              return item.imgUrl;
-            }  
-      }) ; 
-    this.temp_img = temp_ary2 ;
-
-    console.log('- - - < temp_ary > - - -');  
-    console.log(temp_ary); 
-    console.log(temp_ary2); 
     },
 
     refreshList() {
