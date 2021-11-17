@@ -6,6 +6,7 @@ import vuetify from './plugins/vuetify'
 Vue.config.productionTip = false
 
 import pdf from 'vue-pdf'
+// import pdf from 'pdfvuer'
 Vue.use(pdf)
 
 new Vue({

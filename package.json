@@ -11,8 +11,10 @@
     "core-js": "^3.6.5",
     "file-loader": "^6.2.0",
     "firebase": "^7.23.0",
+    "pdfvuer": "^2.0.1",
     "vue": "^2.6.11",
     "vue-pdf": "^4.3.0",
+    "vue-pdf-app": "^2.1.0",
     "vue-router": "^3.4.6",
     "vuetify": "^2.4.0"
   },

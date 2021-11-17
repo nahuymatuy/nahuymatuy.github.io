@@ -45,7 +45,17 @@ export default new Router({
     {
       path: "/blogList",
       name: "blogList",
+      component: () => import("./components/blogListapp")
+    },
+    {
+      path: "/blogList1",
+      name: "blogList",
       component: () => import("./components/blogList")
+    },
+    {
+      path: "/blogList2",
+      name: "blogList2",
+      component: () => import("./components/blogList2")
     },  
     {
       path: "/blogAdd",
