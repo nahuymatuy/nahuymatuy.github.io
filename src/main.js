@@ -5,7 +5,11 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
+import pdf from 'vue-pdf'
+Vue.use(pdf)
+
 new Vue({
+  pdf,
   router,
   vuetify,
   render: h => h(App)

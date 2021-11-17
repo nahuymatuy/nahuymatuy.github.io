@@ -41,7 +41,17 @@ export default new Router({
       path: "/imgList",
       name: "imgList",
       component: () => import("./components/imgList")
-    }, 
+    },
+    {
+      path: "/blogList",
+      name: "blogList",
+      component: () => import("./components/blogList")
+    },  
+    {
+      path: "/blogAdd",
+      name: "blogAdd",
+      component: () => import("./components/blogAdd")
+    },
     {
       path: "/couresOutlineAdd",
       name: "couresOutlineAdd",
